@@ -17,7 +17,7 @@ struct ThemePicker: View {
                     .tag(theme)
             }
         }
-        .pickerStyle(.wheel)
+        .pickerStyle(.navigationLink)
     }
 }
 
