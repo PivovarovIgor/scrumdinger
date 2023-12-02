@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MeetingTimerView: View {
     let speakers: [ScrumTimer.Speaker]
+    let isRecording: Bool
     let theme: Theme
     
     private var currentSpeacker: String {
@@ -23,10 +24,13 @@ struct MeetingTimerView: View {
                     Text(currentSpeacker)
                         .font(.title)
                     Text("is speaking")
-                    
+                    Image(systemName: isRecording ? "mic" : "mic.slash")
+                        .font(.title)
+                        .padding(.top)
                 }
                 .accessibilityElement(children: .combine)
                 .foregroundColor(theme.accentColor)
+                .accessibilityLabel(isRecording ? "with transcription" : "without transcription")
             }
             .overlay  {
                 ForEach(speakers) { speaker in
@@ -47,6 +51,6 @@ struct MeetingTimerView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        MeetingTimerView(speakers: speakers, theme: .yellow)
+        MeetingTimerView(speakers: speakers, isRecording: true, theme: .yellow)
     }
 }
